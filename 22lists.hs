@@ -34,7 +34,6 @@ rplay !mem p1 p2 | S.member (p1, p2) mem = (p1, [])
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input22.txt"
   [inp1, inp2] <- splitOn "\n\n" <$> readFile inputFilePath
   let p1 = map read . tail . lines $ inp1
   let p2 = map read . tail . lines $ inp2

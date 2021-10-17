@@ -16,7 +16,7 @@ main = do
     putStrLn $ "(1, 2): " ++ show e
     putStrLn $ "Second part solution: " ++ (show $ foldr (*) 1 [a, b, c, d, e])
   where
-    f dx dy = length . filter (== '#') . tail . moves dx dy 
+    f dx dy = length . filter (== '#') . tail . moves dx dy
 
 moves :: Int -> Int -> [String] -> String
 moves dx dy inp = map (\ (x,y) -> (inp !! y) !! (x `rem` width)) $ zip horizontal vertical

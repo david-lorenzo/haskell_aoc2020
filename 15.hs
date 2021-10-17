@@ -12,7 +12,6 @@ run1 (allseq, lastn) i = case allseq M.!? lastn of
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input15.txt"
   inputLines <- map (read :: String -> Int) . concatMap (splitOn ",")  . lines <$> readFile inputFilePath
   let s0 = (M.fromList $ zip (init inputLines) [1..], last inputLines)
   let iter1 = [(length inputLines + 1)..2020]

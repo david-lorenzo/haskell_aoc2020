@@ -101,7 +101,7 @@ reduceOptions ops im n
     | otherwise       = reduceOptions newOps newIm (n-1)
   where
     solo = M.mapWithKey (\k a -> S.findMin a)  $  M.filter (\x -> S.size x == 1) ops
-    newIm = M.union im solo 
+    newIm = M.union im solo
     ops1 = M.foldlWithKey (\x k _ -> M.delete k x) ops solo
     values = M.foldl (\a v -> S.insert v a) S.empty solo
     newOps = M.map (\x -> x S.\\ values) ops1
@@ -122,8 +122,6 @@ run2 (Input rs yt ots) = product ytValues
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input16.txt"
-  --inputLines <- lines <$> readFile inputFilePath
   inputData <- parseInput <$> readFile inputFilePath
   let res1 = run1 <$> inputData
   mapM_ (putStrLn . ("Part 1: " ++) . show)  res1

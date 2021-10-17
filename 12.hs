@@ -56,7 +56,7 @@ applyCmd (position@Position{posEast=east, posNorth=north, posFacing=facing}) (ac
     L -> position { posFacing = rotate facing action parameter }
     R -> position { posFacing = rotate facing action parameter }
     F -> case facing of
-            North -> position { posNorth = north + parameter } 
+            North -> position { posNorth = north + parameter }
             South -> position { posNorth = north - parameter }
             East  -> position { posEast = east + parameter }
             West  -> position { posEast = east - parameter }
@@ -85,8 +85,7 @@ applyCmd2 (waypoint, ship) (action, parameter) =
 manhattan Position{posEast=east, posNorth=north} = abs(east) + abs(north)
 
 main = do
-  --inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input12.txt"
+  inputFilePath <- head <$> getArgs
   inputLines <- lines <$> readFile inputFilePath
   let moves = map parseMove inputLines
   --mapM print moves

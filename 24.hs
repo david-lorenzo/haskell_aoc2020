@@ -52,7 +52,7 @@ grid n paths = runST (do
   forM_ paths (\path -> do
           let pos = foldl' runpath center path
           let idx = pos2idx n pos
-          MV.modify v (\x -> not x) idx) 
+          MV.modify v (\x -> not x) idx)
   V.freeze v)
 
 
@@ -68,7 +68,7 @@ neighbors n (y, x) = filter (\(y, x) -> and [0 <= y, y < n, 0 <= x, x < n]) ns
 
 
 countTrueVector :: V.Vector Bool -> Int
-countTrueVector = V.foldl' (\acc x -> if x then acc + 1 else acc) 0 
+countTrueVector = V.foldl' (\acc x -> if x then acc + 1 else acc) 0
 
 
 newValue :: Int -> Pos -> V.Vector Bool -> Bool
@@ -81,7 +81,7 @@ newValue n pos v = case (value, nblacks) of
   where value   = v V.! (pos2idx n pos)
         ns      = map (\p -> v V.! (pos2idx n p)) . neighbors n $ pos
         nblacks = foldl' (\acc x -> if x then acc + 1 else acc) 0 ns
-        
+
 
 flips :: Int -> V.Vector Bool -> V.Vector Bool
 flips n v = runST (do v' <- MV.new (n*n)
@@ -91,7 +91,6 @@ flips n v = runST (do v' <- MV.new (n*n)
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input24.txt"
   inputLines <- lines <$> readFile inputFilePath
   let paths = rights . map (parse (many1 dirp)) $ inputLines
   let gridSize = 201

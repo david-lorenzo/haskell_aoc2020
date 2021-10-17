@@ -61,7 +61,7 @@ conwayCell2 mtx i j = rule2 (cell mtx i j) bns
 
 conwayMatrix conway mtx = runST $ do
   nmtx <- MV.new $ V.length mtx
-  forM_ [0..maxY] (\y -> 
+  forM_ [0..maxY] (\y ->
     forM_ [0..maxX] (\x -> do
       MV.write nmtx (index y x) (conway mtx y x)))
   V.freeze nmtx
@@ -72,8 +72,6 @@ printGrid grid  = mapM_ (\y -> printRow grid y >> putChar '\n') [0..maxY]
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input11.txt"
-  --let inputFilePath = "input11.txt"
   inputLines <- lines <$> readFile inputFilePath
   let m0 = V.fromList . map charToSeat . concat $ inputLines
   --printGrid (conwayMatrix conwayCell m0)
@@ -89,6 +87,6 @@ main = do
   putStrLn . ("Part 2: " ++) . show $ res2
 --   let m1 = conwayMatrix conwayCell2 m0
 --   let l1 = map (map seatToChar . V.toList) $ V.toList m1
---   let convert = map (map seatToChar . V.toList) . V.toList 
+--   let convert = map (map seatToChar . V.toList) . V.toList
 --   mapM_ (\x -> do mapM_ putStrLn x >> putStrLn "") $ take 3 $ map convert states2
 

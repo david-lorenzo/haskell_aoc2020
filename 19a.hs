@@ -51,7 +51,7 @@ parseBody22 = do
   r1 <- integer
   return $ CRule22 (l0, l1) (r0, r1)
 
-  
+
 parseBase :: Parser Rule
 parseBase = do
   s <- many1 anyChar
@@ -67,9 +67,9 @@ parseRule = do
            <|> try parseBody21
            <|> try parseBody12
            <|> try parseBody11
-           <|> try parseBase 
+           <|> try parseBase
   return $ M.singleton ruleid rbody
-  
+
 
 parse :: Parser a -> String -> Either ParseError a
 parse p = Parsec.parse p ""
@@ -122,7 +122,6 @@ createp rules n = go rule
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input19.txt"
   inputLines <- splitOn "\n\n" <$> readFile inputFilePath
   let [rules, messages] = inputLines
   let rulesmap = M.unions $ parselist parseRule $ lines rules

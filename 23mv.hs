@@ -53,7 +53,7 @@ run n len xs = runST (do
           MV.write v c c4
           MV.write v 0 c4)
     V.freeze v)
-  
+
 
 main = do
   let cups = [5, 9, 8, 1, 6, 2, 7, 3, 4]

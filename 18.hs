@@ -31,7 +31,7 @@ parseSubexpr = do
   spaces
   char ')'
   return subexp
-  
+
 
 parseExpr = do
   lexp <- many (try parseSubexpr
@@ -63,7 +63,6 @@ runeval2 (LExpr es) = product . map (sum . map runeval2) $ splitOn [Mul 1] es
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input18.txt"
   inputLines <- lines <$> readFile inputFilePath
   let parsedLines = sequenceA . map (parse parseExpr "") $ inputLines
 

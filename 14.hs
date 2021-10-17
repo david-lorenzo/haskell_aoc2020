@@ -56,7 +56,7 @@ runInstructions state (IAssignment{address=addr, value=val}) =
         msk = csMask state
         applyMask :: Mask -> Int -> Int
         applyMask mask = ((snd mask) .|.) . ((fst mask) .&.)
-        
+
 
 parseInstruction2 = mkInstruction . splitOn " = " where
   mkInstruction [x, y] = let getAddress = intToString 36 . read . takeWhile isDigit . dropWhile (not . isDigit)
@@ -78,7 +78,7 @@ genAddresses acc (x:xs) =
     '0' -> genAddresses (2*acc) xs
     '1' -> genAddresses (2*acc + 1) xs
     'X' -> (genAddresses (2*acc) xs) ++ (genAddresses (2*acc + 1) xs)
-    
+
 runInstructions2 :: CompState2 -> Instruction -> CompState2
 runInstructions2 state (IMask2{mask2=imask}) = state { csMask2 = imask }
 runInstructions2 state (IAssignment2{address2=addr, value2=val}) =
@@ -90,7 +90,6 @@ runInstructions2 state (IAssignment2{address2=addr, value2=val}) =
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input14.txt"
   inputLines <- lines <$> readFile inputFilePath
   --mapM_ print inputLines
   let instructions = map parseInstruction inputLines

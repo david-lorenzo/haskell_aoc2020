@@ -113,7 +113,7 @@ main = do
   putStrLn . ("Part 2: " ++) . show $ res2
 --   let m1 = conwayMatrix conwayCell2 m0
 --   let l1 = map (map seatToChar . V.toList) $ V.toList m1
---   let convert = map (map seatToChar . V.toList) . V.toList 
+--   let convert = map (map seatToChar . V.toList) . V.toList
 --   mapM_ (\x -> do mapM_ putStrLn x >> putStrLn "") $ take 3 $ map convert states2
 
 

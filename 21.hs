@@ -20,7 +20,7 @@ prodLineToAlSetIngr (ingrs, allrgs) = [(a, S.fromList ingrs) | a <- allrgs]
 
 
 discover :: M.Map Allergen (S.Set Ingredient) -> M.Map Allergen (S.Set Ingredient) -> M.Map Allergen Ingredient
-discover acc aim 
+discover acc aim
   | M.null aim = M.map (head . S.toList) acc
   | otherwise = discover newAcc newAim
   where singles = filter ((==1) . S.size . snd) $ M.toList aim
@@ -32,7 +32,6 @@ discover acc aim
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input21.txt"
   inputLines <- lines <$> readFile inputFilePath
   let products = map readprod inputLines
 
@@ -45,7 +44,7 @@ main = do
   putStrLn . ("Part 1: " ++) . show $ res1
 
   -- Part 2
-  let res20 = discover M.empty allergensIngredientsMap 
+  let res20 = discover M.empty allergensIngredientsMap
   let res21 = intercalate "," . map snd . sort . M.toList $ res20
   putStrLn . ("Part 2: " ++) $ res21
   return ()

@@ -43,7 +43,7 @@ run1 :: Expr -> Either String Int
 run1 EErr       = Left "Error de evaluacion"
 run1 (Const n)  = Right n
 run1 (SubExp e) = run1 $ eval1 (ESum 0) (SubExp e)
-  where 
+  where
     eval1 (Const n) OpSum    = ESum n
     eval1 (Const n) OpMul    = EMul n
     eval1 (ESum n) (Const m) = Const (n+m)
@@ -53,7 +53,6 @@ run1 (SubExp e) = run1 $ eval1 (ESum 0) (SubExp e)
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input18.txt"
   inputLines <- lines <$> readFile inputFilePath
 
   -- Part 1

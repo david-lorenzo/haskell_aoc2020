@@ -9,8 +9,7 @@ chinesseRemTheorem (n0, a0) (n1, a1) = (n2, x0 + n2)
         n2 = n0*n1
 
 main = do
-  --inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input13.txt"
+  inputFilePath <- head <$> getArgs
   inputLines <- lines <$> readFile inputFilePath
   --mapM_ print inputLines
   let departure = read . head $ inputLines :: Int

@@ -16,8 +16,6 @@ seatToChar F = '.'
 
 main = do
   inputFilePath <- head <$> getArgs
-  --let inputFilePath = "../input11.txt"
-  let inputFilePath = "input11.txt"
   inputLines <- lines <$> readFile inputFilePath
   let ml0 = map (map charToSeat) inputLines
   let row = head ml0

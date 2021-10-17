@@ -13,7 +13,7 @@ play1 p1 p2 | Q.null p1 = p2
        p1wins      = h1 > h2
        newp1       = bool t1 (t1 |> h1 |> h2) p1wins
        newp2       = bool t2 (t2 |> h2 |> h1) (not p1wins)
- 
+
 
 rplay mem p1 p2 | S.member (p1, p2) mem    = (p1, Q.empty)
                 | (Q.null p1 || Q.null p2) = (p1, p2)
@@ -37,7 +37,6 @@ calc_result len acc idx val = acc + val*(len - idx)
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input22.txt"
   [inp1, inp2] <- splitOn "\n\n" <$> readFile inputFilePath
   let p1 = Q.fromList . map read . tail . lines $ inp1 :: Q.Seq Int
   let p2 = Q.fromList . map read . tail . lines $ inp2 :: Q.Seq Int

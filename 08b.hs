@@ -9,7 +9,7 @@ main = do
   inputData <- lines <$> readFile inputFilePath
   let instructions = map readInstruction inputData
   let aInstructions = listArray (0, length instructions - 1) instructions
-  (putStrLn . ("Part 2: " ++) . show . fixProgram) aInstructions 
+  (putStrLn . ("Part 2: " ++) . show . fixProgram) aInstructions
   return ()
 
 data Instruction = Nop Int | Acc Int | Jmp Int deriving (Show)
@@ -28,7 +28,7 @@ readInstruction x = case inst of
 data Computer = Computer { address :: Int, accumulator :: Int } deriving (Show)
 
 runInstruction :: Array Int Instruction -> S.IntSet -> Computer -> (Bool, S.IntSet, Computer)
-runInstruction prog addressSet (Computer { address = address, accumulator = accumulator }) = 
+runInstruction prog addressSet (Computer { address = address, accumulator = accumulator }) =
     case prog ! address of
       Nop _ -> (infLoop, newAddressSet, Computer {address = address + 1, accumulator = accumulator})
       Jmp x -> (infLoop, newAddressSet, Computer {address = address + x, accumulator = accumulator})

@@ -17,8 +17,6 @@ seatToChar F = '.'
 
 main = do
   inputFilePath <- head <$> getArgs
-  --let inputFilePath = "../input11.txt"
-  let inputFilePath = "input11.txt"
   inputLines <- lines <$> readFile inputFilePath
   let ml0 = map (map charToSeat) inputLines
   let row = head ml0
@@ -26,7 +24,7 @@ main = do
   d <- sequence $ map makeRow ml0
   writeCell d 0 0 F
   e <- MV.unsafeRead (d !! 0) 0
-  print e 
+  print e
   return ()
 
 readCell  grid y x   = MV.unsafeRead  (grid !! y) x

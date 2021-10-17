@@ -6,7 +6,7 @@ data Policy = Policy {
     p2 :: Int,
     char :: Char,
     password :: String
-} deriving (Show) 
+} deriving (Show)
 
 -- main = interact ((++ "\n") . show . length . (filter (validate test1)) . (map parsePolicy) . lines)
 main = interact ((++ "\n") . show . length . (filter (validate test2)) . (map parsePolicy) . lines)
@@ -19,7 +19,7 @@ parsePolicy str = do
          <*> readMaybe p2
          <*> pure char
          <*> pure password
-  
+
 validate :: (Policy -> Bool) -> Maybe Policy -> Bool
 validate _ Nothing = False
 validate test (Just p) = test p
@@ -29,7 +29,7 @@ test1 Policy {p1=x, p2=y, char=c, password=p} = x <= n && n <= y
   where n = length . (filter (== c)) $ p
 
 test2 :: Policy -> Bool
-test2 Policy {p1=x, p2=y, char=c, password=p} = 
+test2 Policy {p1=x, p2=y, char=c, password=p} =
   let c1 = p !! (x-1) == c
       c2 = p !! (y-1) == c
   in case (c1, c2) of

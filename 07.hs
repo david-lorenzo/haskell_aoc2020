@@ -59,13 +59,13 @@ parseFullBag = do
   spaces
   color <- parseBagColor
   return (read num :: Int, color)
-  
+
 
 parseContent :: Parsec String () [(Int, String)]
 parseContent = do
   content <- try parseEmptyBag <|> try (parseFullBag `sepBy1` char ',')
   return content
- 
+
 
 p :: Parsec String () (String, [(Int, String)])
 p = do

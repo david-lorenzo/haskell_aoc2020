@@ -15,7 +15,7 @@ conway _ 3 = 1
 conway _ _ = 0
 
 get :: (Ord k) => k -> M.Map k Int -> Int
-get = M.findWithDefault 0 
+get = M.findWithDefault 0
 
 neighbors (x, y, z) cube =
   sum [ get (ix, iy, iz) cube | ix <- [(x-1), x, (x+1)]
@@ -70,7 +70,7 @@ printCube cube = do
     )
   return ()
   -}
-  
+
 mkRange n acs = expand (Range mnr mxr) where
   mnr = minimum $ map f acs
   mxr = maximum $ map f acs
@@ -81,7 +81,6 @@ mkRange n acs = expand (Range mnr mxr) where
 
 main = do
   inputFilePath <- head <$> getArgs
-  let inputFilePath = "../input17.txt"
   inputLines <- lines <$> readFile inputFilePath
   let acs = [((x, y, 0), 1) | (y, l) <- zip [0..] inputLines
                             , (x, c) <- zip [0..] l
@@ -90,7 +89,7 @@ main = do
   let acs2 = [((x, y, 0, 0), 1) | (y, l) <- zip [0..] inputLines
                                 , (x, c) <- zip [0..] l
                                 , c == '#']
-  
+
   let cube  = M.fromList acs
   let cube2 = M.fromList acs2
 

@@ -6,8 +6,6 @@ import qualified Data.Vector.Generic.Mutable as M
 
 main = do
   inputFilePath <- head <$> getArgs
-  --let inputFilePath = "../input11.txt"
-  let inputFilePath = "input11.txt"
   inputLines <- lines <$> readFile inputFilePath
   --let m0 = createMatrix $ map (map charToSeat) inputLines
   let ml0 = map (map charToSeat) inputLines
@@ -23,7 +21,6 @@ main = do
   let c1 = MV.read r 0
   print c1
   return ()
-  
   -- Part 1
 --   let states = iterate (conwayMatrix conwayCell) m0
 --   let state1 = fst . head . filter (uncurry (==)) $ zip states (tail states)
@@ -36,7 +33,7 @@ main = do
 --   putStrLn . ("Part 2: " ++) . show $ res2
 --   let m1 = conwayMatrix conwayCell2 m0
 --   let l1 = map (map seatToChar . V.toList) $ V.toList m1
---   let convert = map (map seatToChar . V.toList) . V.toList 
+--   let convert = map (map seatToChar . V.toList) . V.toList
 --   mapM_ (\x -> do mapM_ putStrLn x >> putStrLn "") $ take 3 $ map convert states2
 
 
@@ -73,8 +70,8 @@ initRow rs = do
   mapM (\(i, v) -> do M.unsafeWrite r i v) (zip [0,1..] rs)
   return r
 
-initGrid = map initRow 
-   
+initGrid = map initRow
+
 -- conwayCell mtx i j = case cell mtx i j of
 --                     F -> F
 --                     E -> if bns == 0 then B else E
@@ -85,8 +82,8 @@ initGrid = map initRow
 --                            , x <- if y == i then [j-1, j+1] else [j-1, j, j+1]
 --                            , y >= 0, y < height
 --                            , x >= 0, x < width]
--- 
--- 
+--
+--
 -- conwayCell2 mtx i j = case cell mtx i j of
 --                         F -> F
 --                         E -> if bns == 0 then B else E
@@ -105,9 +102,9 @@ initGrid = map initRow
 --         sw = lineOfSight [cell mtx y x | (y, x) <- zip [(i+1),(i+2)..lastRowIdx] [(j-1),(j-2)..0] ]
 --         se = lineOfSight [cell mtx y x | (y, x) <- zip [(i+1),(i+2)..lastRowIdx] [(j+1),(j+2)..lastColIdx] ]
 --         bns = length . filter (==B) $ concat [n, s, w, e, nw, ne, sw, se]
--- 
+--
 -- conwayMatrix conway mtx = createMatrix [[conway mtx y x | x <- [0..lastColIx]] | y <- [0..lastRowIx]]
 --   where lastRowIx = V.length mtx - 1
 --         lastColIx = (V.length $ V.head mtx) - 1
--- 
--- 
+--
+--
